@@ -5,7 +5,11 @@ from mlrun.frameworks.sklearn import apply_mlrun
 
 
 def train(
-    dataset: mlrun.DataItem, label_column: str = "label", n_estimators=10, max_depth=5
+    dataset: mlrun.DataItem, 
+    label_column: str = "label", 
+    n_estimators: int = 100, 
+    learning_rate: float = 0.1,
+    max_depth: int = 3
 ):
     # Initialize our dataframes
     df = dataset.as_df()
@@ -18,12 +22,12 @@ def train(
     )
 
     # Pick an ideal ML model
-    model = ensemble.RandomForestClassifier(
-        n_estimators=n_estimators, max_depth=max_depth
+    model = ensemble.GradientBoostingClassifier(
+        n_estimators=n_estimators, learning_rate=learning_rate, max_depth=max_depth
     )
 
     # Wrap our model with Mlrun features, specify the test dataset for analysis and accuracy measurements
-    apply_mlrun(model=model, model_name="my_model", x_test=X_test, y_test=y_test)
+    apply_mlrun(model=model, model_name="cancer_classifier", x_test=X_test, y_test=y_test)
 
     # Train our model
     model.fit(X_train, y_train)

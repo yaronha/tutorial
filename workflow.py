@@ -2,11 +2,11 @@ import mlrun
 from kfp import dsl
 
 # Create a Kubeflow Pipelines pipeline
-@dsl.pipeline(name="iris-demo")
-def pipeline(model_name="iris"):
+@dsl.pipeline(name="breast-cancer-demo")
+def pipeline(model_name="breast_cancer_classifier"):
     # run the ingestion function with the new image and params
     ingest = mlrun.run_function(
-        "gen-iris",
+        "gen-breast-cancer",
         name="get-data",
         params={"format": "pq"},
         outputs=["dataset"],

@@ -1,10 +1,10 @@
 kind: project
 metadata:
-  name: tutorial-admin
+  name: breast-cancer-admin
 spec:
   functions:
-  - url: gen_iris.py
-    name: gen-iris
+  - url: gen_breast_cancer.py
+    name: gen-breast-cancer
     image: mlrun/mlrun
   - url: trainer.py
     name: trainer
