@@ -9,7 +9,8 @@ def train(
     label_column: str = "label", 
     n_estimators: int = 100, 
     learning_rate: float = 0.1,
-    max_depth: int = 3
+    max_depth: int = 3,
+    model_name: str = "cancer_classifier"
 ):
     # Initialize our dataframes
     df = dataset.as_df()
@@ -27,7 +28,7 @@ def train(
     )
 
     # Wrap our model with Mlrun features, specify the test dataset for analysis and accuracy measurements
-    apply_mlrun(model=model, model_name="cancer_classifier", x_test=X_test, y_test=y_test)
+    apply_mlrun(model=model, model_name=model_name, x_test=X_test, y_test=y_test)
 
     # Train our model
     model.fit(X_train, y_train)

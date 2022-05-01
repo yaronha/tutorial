@@ -3,12 +3,12 @@ from kfp import dsl
 
 # Create a Kubeflow Pipelines pipeline
 @dsl.pipeline(name="breast-cancer-demo")
-def pipeline(model_name="breast_cancer_classifier"):
+def pipeline(model_name="cancer_classifier"):
     # run the ingestion function with the new image and params
     ingest = mlrun.run_function(
         "gen-breast-cancer",
         name="get-data",
-        params={"format": "pq"},
+        params={"format": "pq", "model_name": model_name},
         outputs=["dataset"],
     )
     

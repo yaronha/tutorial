@@ -16,8 +16,8 @@ spec:
     image: mlrun/mlrun
   workflows: []
   artifacts: []
-  source: ''
+  source: git://github.com/yaronha/tutorial.git#refs/heads/main
   subpath: ''
-  origin_url: ''
+  origin_url: git://github.com/yaronha/tutorial.git#refs/heads/main
   desired_state: online
   disable_auto_mount: false
